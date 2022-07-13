@@ -23,7 +23,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-// helpful functions: encrypt pass
+
 UserSchema.pre("save", function (next) {
     if (!this.isModified("password")){
         return next();
@@ -32,7 +32,7 @@ UserSchema.pre("save", function (next) {
         return next();
     }    
 })
-// helpful functions: compare pass
+
 UserSchema.methods.comparePassword = (password, hash) => {
     let comp = bcrypt.compareSync(password, hash)
     return comp;
